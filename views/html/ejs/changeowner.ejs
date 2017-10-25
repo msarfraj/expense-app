@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+	<% include navbar %>
+	<div class="content">
+	<p>Enter Name of New Owner</p>
+		<form action="/changeowner" method="post" onsubmit="return validateLogin(this)">
+			<div class="data">
+				<div class="row">
+					<div class="block_text">Name</div>
+					<div class="block_input">
+						<input type="text" name="name" />
+					</div>
+				</div>
+				<span class="submit"><input type="submit" value="Submit"></span>
+				</div>
+		</form>
+	</div>
+</body>
+<% include footer %>
+</html>

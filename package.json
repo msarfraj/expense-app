@@ -1,0 +1,39 @@
+{
+  "name": "frnmz-app",
+  "version": "1.0.0",
+  "description": "Project to create app for maintaining friday namaz member and expenses in Sapient Noida Office",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "testfrnmz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msarfraj/frnmz-nodejs.git"
+  },
+  "keywords": [
+    "Friday",
+    "Namaz"
+  ],
+  "author": "Mohd Sarfraj",
+  "dependencies": {
+    "apn": "^2.1.2",
+    "connect": "^2.14.4",
+    "cookie-parser": "^1.0.0",
+    "cool-ascii-faces": "1.3.4",
+    "crypto": "^0.0.3",
+    "csprng": "^0.1.1",
+    "dateformat": "^2.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.10.6",
+    "express-session": "^1.7.6",
+    "gravatar": "^1.0.6",
+    "mysql": "^2.5.4",
+    "node-gcm-service": "^0.2.8",
+    "node-pushnotifications": "^1.0.14",
+    "node-schedule": "^1.2.0",
+    "nodemailer": "latest",
+    "serve-favicon": "^2.3.2",
+    "siege": "^0.2.0"
+  }
+}

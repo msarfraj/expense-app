@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+<div class="content">
+<div class="data" >
+<div class="row">
+<div class="head_text">Name</div>
+<div class="head_text">Amount</div>
+<div class="head_text">Date</div>
+<div class="head_text">Reason</div>
+<div class="head_text">Type</div>
+</div>
+<%val.response.forEach(function(item) { %>
+<div class="row">
+   <div class="data_text"> <%= item.person %> </div>
+<div class="data_text"><%= item.amount %></div>
+<div class="data_text"><%= item.finedate.toDateString() %></div>
+<div class="data_text"> <%= item.reasonText %> </div>
+<div class="data_text"> <%= item.type %> </div>
+ </div>
+  <% }); %>
+    </div>
+</div>    
+    <% include footer %>
+</body>
+</html>

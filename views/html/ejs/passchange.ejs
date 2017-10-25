@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+<div class="content">
+	<p>Enter Details to change a password</p>
+		<form action="/changepass" method="post" onsubmit="return validateLogin(this)">
+			<div class="data">
+				<div class="row">
+					<div class="block_text">Name</div>
+					<div class="block_input">
+						<input type="text" name="name" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="block_text">Existing Password</div>
+					<div class="block_input">
+						<input type="password" name="oldpass" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="block_text">New Password</div>
+					<div class="block_input">
+						<input type="password" name="newpass" />
+					</div>
+				</div>
+				<span class="submit"><input type="submit" value="Submit"></span>
+				</div>
+		</form>
+	</div><% include footer %>
+</body>
+</html>

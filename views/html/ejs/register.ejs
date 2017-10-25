@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+
+<div class="content">
+<p>Enter details to Add a member</p>
+<form action="/register" method="post" onsubmit="return validateRegister(this)">
+<div class="data">
+<div class="row">
+<div class="block_text">Name</div>
+<div class="block_input">
+<input type="text" name="name" />
+</div>
+</div>
+<div class="row">
+<div class="block_text">Email</div>
+<div class="block_input"> <input type="text" name="email" /></div>
+</div>
+<div class="row">
+<div class="block_text">Mobile No.[10 digits]</div>
+<div class="block_input"> <input type="text" name="cellno" /></div>
+</div>
+<div class="row">
+<div class="block_text">NTID</div>
+<div class="block_input"> <input type="text" name="ntid" /></div>
+</div>
+<span class="submit"><input type="submit" value="Submit"> </span>
+</div>
+</form>
+</div>
+<% include footer %>
+</body>
+</html>

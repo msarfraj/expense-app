@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+<div class="content">
+<p>Enter email to Remove a member </p>
+<form action="/removeme" method="get" onsubmit="return validateForm(this)">
+<div class="data">
+<div class="row">
+<div class="data_text">
+<input type="text" name="email"  />
+</div>
+</div>
+<span class="submit"><input type="submit" value="Submit"> </span>
+</div>
+
+
+</form>
+</div>
+
+<% include footer %>
+</body>
+</html>

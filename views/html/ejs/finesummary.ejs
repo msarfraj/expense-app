@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+<h2>Current dues: <%= total%></h2>
+<div class="content">
+<p>Fine Summary</p>
+<div class="data">
+<div class="row">
+<div class="head_text">Name</div>
+<div class="head_text">Fine amount</div>
+<div class="head_text">Action</div>
+</div>
+<% datalist.forEach(function(item) { %>
+<div class="row">
+   <div class="data_text">  <%= item.person %>
+     <script>
+	document.write('<a href="/getUser?' + '<%= item.person %>' + '">(view details)</a>');
+</script>
+</div>
+	<div class="data_text"><%= item.amount %></div>
+	 <div class="data_text">
+	 <%if(request.session.fineowner){ %>
+	  <script>
+	document.write('<a href="/addfine?' + '<%= item.person %>' + '">Add Fine</a>');
+</script>
+<%}%>
+</div>
+	</div>
+    <% }); %>
+    
+ </div>   
+    </div>
+    <% include footer %>
+</body>
+</html>

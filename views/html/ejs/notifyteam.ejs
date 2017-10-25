@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+<div class="content">
+<p>Notify Team for Your Unavailability</p>
+<form action="/sendemail" method="post" onsubmit="return validateFeedback(this)">
+<div class="data">
+<div class="row">
+<div class="block_text">Name</div>
+<div class="block_input">
+<input type="text" name="name" />
+</div>
+</div>
+<div class="row">
+<div class="block_text">Email for</div>
+<div class="block_input"> <select name="emailopt" >
+  <option value="sick">Sick</option>
+  <option value="late">Late</option>
+  <option value="leave">Leave</option>
+  <option value="wfh">WFH</option>
+   <option value="test">TestMail</option>
+</select></div>
+</div>
+<div class="row">
+<div class="block_text">Coming Late??(time hh:mm)</div>
+<div class="block_input"><input type="text" name="latetime" /></div>
+</div>
+<div class="row">
+<div class="block_text">Additional Comments</div>
+<div class="block_input"><textarea name="comment" cols="40" rows="5"></textarea></div>
+</div>
+<span class="submit"><input type="submit" value="Submit"> </span>
+</div>
+</form>
+</div>
+<% include footer %>
+</body>
+</html>

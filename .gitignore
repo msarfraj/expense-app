@@ -1,0 +1,20 @@
+#################
+### Eclipse
+#################
+
+*.pydevproject
+.metadata
+#bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+local-server.js
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
