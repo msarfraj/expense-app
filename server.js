@@ -18,7 +18,7 @@ app.use(session({
     httpOnly: true,
     ephemeral: true
 }));
-app.use(favicon(__dirname + '/public/media/img/sapeicon.jpg'));
+app.use(favicon(__dirname + '/public/media/img/fav-icon.png'));
 app.use(express.static(__dirname + '/public/media/'));
 app.use(express.static(__dirname + '/views/html/ejs'));
 app.set('views','./views/html/ejs');
