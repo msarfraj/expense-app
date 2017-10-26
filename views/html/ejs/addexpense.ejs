@@ -8,25 +8,23 @@
 <form action="/addexpense" method="post" onsubmit="return validateTrans(this)">
 <div class="data">
 <div class="row">
-<div class="head_text">Expense</div>
-<div class="head_text">Date</div>
-<div class="head_text">Paid Through</div>
-<div class="head_text">Comments</div>
+<div class="block_text">Expense</div>
+<div class="block_input">
+<input type="text" name="expenseTitle" />
+</div>
 </div>
 <div class="row">
-<div class="data_text">
-<input type="text" name="expense" />
+<div class="block_text">Date</div>
+<div class="block_input"> <input type="date" name="expenseDate" /></div>
 </div>
-<div class="data_text">
-<input type="date" name="expensedate" />
+<div class="row">
+<div class="block_text">Paid Through</div>
+<div class="block_input"> <input type="text" name="paymentMode"/></div>
 </div>
-
-<div class="data_text">
-<input type="text" name="paidthrough" />
 </div>
-<div class="data_text">
-<input type="text" name="expensecomment" />
-</div>
+<div class="row">
+<div class="block_text">Comments</div>
+<div class="block_input"> <input type="text" name="commentedText"/></div>
 </div>
 <span class="submit"><input type="submit" value="Submit"> </span>
 </div>
