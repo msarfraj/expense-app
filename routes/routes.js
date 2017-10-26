@@ -147,7 +147,7 @@ var routes = function(app) {
 		usermodel.getFineowner(function(data) {
 			if(data.res){
 				req.session.cashier=data.response;
-				res.render(path.resolve(viewdir+'/addpayment'));
+				res.render(path.resolve(viewdir+'/addexpense'));
 			}
 		});
 		
@@ -171,7 +171,7 @@ var routes = function(app) {
 			}
 		});
 	});
-	app.post('/addpayment', function(req, res) {
+	app.post('/addexpense', function(req, res) {
 		var trandate = req.body.paidon;
 		var amount = req.body.amount;
 		var name = req.body.name;

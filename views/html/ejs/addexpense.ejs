@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+<div class="content">
+<p>Add an Expense:</p>
+<form action="/addexpense" method="post" onsubmit="return validateTrans(this)">
+<div class="data">
+<div class="row">
+<div class="head_text">Expense</div>
+<div class="head_text">Date</div>
+<div class="head_text">Paid Through</div>
+<div class="head_text">Comments</div>
+</div>
+<div class="row">
+<div class="data_text">
+<input type="text" name="expense" />
+</div>
+<div class="data_text">
+<input type="date" name="expensedate" />
+</div>
+
+<div class="data_text">
+<input type="text" name="paidthrough" />
+</div>
+<div class="data_text">
+<input type="text" name="expensecomment" />
+</div>
+</div>
+<span class="submit"><input type="submit" value="Submit"> </span>
+</div>
+</form>
+</div>
+<% include footer %>
+</body>
+</html>
