@@ -1,5 +1,5 @@
 var chgpass = require('../src/chpass');
-var addamnt = require('../src/addamount');
+var addspent = require('../src/addamount');
 var register = require('../src/register');
 var login = require('../src/login');
 var url=require('url');
@@ -162,7 +162,7 @@ var routes = function(app) {
 		var name = req.session.emp;
 		var reason = req.body.reason;
 		var type='fine';
-		addamnt.addfinetrans(trandate, amount, name,reason,type, function(data) {
+		addspent.addfinetrans(trandate, amount, name,reason,type, function(data) {
 			if(data.res){
 				res.render(path.resolve(viewdir+'/transuccess'),{val:data});
 			}else{
@@ -172,12 +172,12 @@ var routes = function(app) {
 		});
 	});
 	app.post('/addexpense', function(req, res) {
-		var trandate = req.body.paidon;
+		var trandate = req.body.expenseDate;
 		var amount = req.body.amount;
-		var name = req.body.name;
-		var reason='Paid to '+req.session.cashier.empname;
-		var type='payment';
-		addamnt.addfinetrans(trandate, amount,name,reason,type, function(data) {
+		var expenseTitle = req.body.expenseTitle;
+		var reason=req.body.comment;
+		var type=req.body.paymentMode;
+		addspent.addfinetrans(trandate, amount,expenseTitle,reason,type, function(data) {
 			if(data.res){
 				res.render(path.resolve(viewdir+'/transuccess'),{val:data});
 			}else{
