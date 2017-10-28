@@ -1,17 +1,17 @@
 var connection=require('.././model/db');
 var dateFormat = require('dateformat');
-exports.addfinetrans = function(trandate, amount, name,reason,type,callback) {
+exports.addexpense = function(trandate, amount, title,reason,type,callback) {
 			if(trandate.length==0){
 				trandate=dateFormat(new Date(), "yyyy-mm-dd");
 			}
-			var insert_data_Query='insert into fine_amount(finedate,amount,person,reasonText,type) values("'+trandate+'","'+amount+'","'+name+'","'+reason+'","'+type+'")' ;
+			var insert_data_Query='insert into expenses(expense_date,expense_amount,expense_title,comments,payment_mode) values("'+trandate+'","'+amount+'","'+title+'","'+reason+'","'+type+'")' ;
 			connection.query(insert_data_Query,function(err,result){
 				if(err){
-					callback({'response':"DB Error:While insert into -fine_amount "+err,'res':false});
+					callback({'response':"DB Error:While insert into -expenses "+err,'res':false});
 				}else if(result.affectedRows!=0){
-					callback({'response':"Sucessfully Added for "+name,'res':true});
+					callback({'response':"Sucessfully Added for "+title,'res':true});
 				}else{
-					callback({'response':"Unable to Update for "+name,'res':true});
+					callback({'response':"Unable to Update for "+title,'res':true});
 				}
 			});
 		}

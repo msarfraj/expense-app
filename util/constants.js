@@ -15,10 +15,10 @@ exports.check_ip_query = 'SELECT COUNT(id) as counted FROM urls WHERE datetime_a
 //exports.database = 'heroku_9d88e519e560328';
 
 //herokudb jawsdb
-exports.host = 'mwgmw3rs78pvwk4e.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';//?reconnect=true';
-exports.user = 'imp4tqfjlan8iqh3';
-exports.password = 'fiq0ia739dawrris';
-exports.database = 'fu57vhhzl3fvhhxq';
+exports.host = 'vlvlnl1grfzh34vj.chr7pe7iynqr.eu-west-1.rds.amazonaws.com';//?reconnect=true';
+exports.user = 'otbdswnupjcbcipr';
+exports.password = 'q6w7elrqhe5i7oe9';
+exports.database = 't83vnr37hrb10fll';
 
 //*/
 //local

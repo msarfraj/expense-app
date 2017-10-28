@@ -1,5 +1,5 @@
 var chgpass = require('../src/chpass');
-var addspent = require('../src/addamount');
+var addspent = require('../src/addexpense');
 var register = require('../src/register');
 var login = require('../src/login');
 var url=require('url');
@@ -19,32 +19,29 @@ var routes = function(app) {
 	app.get('/notifyall', function(req, res) {
 		res.render(path.resolve(viewdir+'/notifyteam'));
 	});
-	
+
 	app.post('/sendemail', function(req, res) {
 		var name = req.body.name;
 		var emailopt = req.body.emailopt;
 		var lateTime=req.body.latetime;
 		var comment=req.body.comment;
 		var name,email;
-		//var userPass=ntid.split('/');
+
 		var response;
-		/*usermodel.getUser(userPass[0],function(data) {
-			if(data.res){
-				name=data.response[0].empname;
-				email=data.response[0].emailid;*/
+		
 				var user= {emailopt:emailopt,lateTime:lateTime,comment:comment,name:name,email:email};
 				maintaindata.sendnotification(user,function(notificationdata){
 							console.log("sent email data");
 							res.render(path.resolve(viewdir+'/info'),{response:notificationdata.response});
 						});
 			/*}else{
-				res.render(path.resolve(viewdir+'/error'),{val:'Unable to found Person with Id:'+userPass[0]});	
+				res.render(path.resolve(viewdir+'/error'),{val:'Unable to found Person with Id:'+userPass[0]});
 			}
 		});*/
-		
+
 	});
-		
-	
+
+
 	app.get('/', function(req, res) {
 		res.render(path.resolve(viewdir+'/home'));
 	});
@@ -61,7 +58,7 @@ var routes = function(app) {
 		feedback.feedbackemail(name,email,comment,function(data){
 			res.render(path.resolve(viewdir+'/error'),{val:data});
 		});
-		
+
 	});
 	app.get('/dologin', function(req, res) {
 		if(req.session.user){
@@ -140,7 +137,7 @@ var routes = function(app) {
 			}
 		});
 		}else{
-			res.render(path.resolve(viewdir+'/goLogin'));	
+			res.render(path.resolve(viewdir+'/goLogin'));
 		}
 	});
 	app.get('/addtransaction', function(req, res) {
@@ -150,7 +147,7 @@ var routes = function(app) {
 				res.render(path.resolve(viewdir+'/addexpense'));
 			}
 		});
-		
+
 	});
 	app.get('/addfine', function(req, res) {
 		req.session.emp=decodeURIComponent(req.url.split('?')[1]);
@@ -177,7 +174,7 @@ var routes = function(app) {
 		var expenseTitle = req.body.expenseTitle;
 		var reason=req.body.comment;
 		var type=req.body.paymentMode;
-		addspent.addfinetrans(trandate, amount,expenseTitle,reason,type, function(data) {
+		addspent.addexpense(trandate, amount,expenseTitle,reason,type, function(data) {
 			if(data.res){
 				res.render(path.resolve(viewdir+'/transuccess'),{val:data});
 			}else{
@@ -229,7 +226,7 @@ var routes = function(app) {
 				 if(data.resp){
 					 maintaindata.finesummary(function(summarydata){
 						 if(summarydata.res){
-							 res.render(path.resolve(viewdir+'/finesummary'),{total:data.data,datalist:summarydata.data}); 
+							 res.render(path.resolve(viewdir+'/finesummary'),{total:data.data,datalist:summarydata.data});
 						 }else{
 							 res.render(path.resolve(viewdir+'/error'),{val:summarydata});
 						 }
@@ -241,12 +238,12 @@ var routes = function(app) {
 					res.render(path.resolve(viewdir+'/error'),{val:data});
 				}
 		});
-		
+
 	});
 	app.get('*', function(req, res){
 		res.render(path.resolve(viewdir+'/error'),{val:{response:"Not Found"}});
 		});
-	
+
 };
 
 module.exports = routes;
