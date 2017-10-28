@@ -9,7 +9,7 @@ var ejs = require('ejs');
 var trans=require('../src/trans');
 var usermodel=require('../src/viewUsers');
 var history = require('../src/userhistory');
-var maintaindata = require('../src/maintaindata');
+var summary = require('../src/summary');
 var feedback = require('../src/feedback');
 var cron = require('node-schedule');
 var os = require("os");
@@ -30,7 +30,7 @@ var routes = function(app) {
 		var response;
 		
 				var user= {emailopt:emailopt,lateTime:lateTime,comment:comment,name:name,email:email};
-				maintaindata.sendnotification(user,function(notificationdata){
+				summary.sendnotification(user,function(notificationdata){
 							console.log("sent email data");
 							res.render(path.resolve(viewdir+'/info'),{response:notificationdata.response});
 						});
@@ -141,12 +141,8 @@ var routes = function(app) {
 		}
 	});
 	app.get('/addtransaction', function(req, res) {
-		usermodel.getFineowner(function(data) {
-			if(data.res){
-				req.session.cashier=data.response;
+			
 				res.render(path.resolve(viewdir+'/addexpense'));
-			}
-		});
 
 	});
 	app.get('/addfine', function(req, res) {
@@ -218,13 +214,13 @@ var routes = function(app) {
 		req.session.user=false;
 		res.render(path.resolve(viewdir+'/logout'));
 	});
-	app.get('/fhome', function(req, res) {
+	app.get('/ehome', function(req, res) {
 		var d=new Date();
 		var day=dateFormat(d, "yyyy-mm-dd");
-		 maintaindata.totalfine(day ,function(data) {
+		 summary.allexpenses(day ,function(data) {
 			 if(data.res){
 				 if(data.resp){
-					 maintaindata.finesummary(function(summarydata){
+					 summary.allexpenses(function(summarydata){
 						 if(summarydata.res){
 							 res.render(path.resolve(viewdir+'/finesummary'),{total:data.data,datalist:summarydata.data});
 						 }else{

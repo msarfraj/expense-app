@@ -48,36 +48,34 @@ exports.sendnotification = function(user, callback) {
 			});
 }
 
-exports.totalfine = function(date, callback) {
-	var getdata_fine = 'SELECT sum(amount) as totalfine FROM fine_amount where type="fine"';
-	var getdata_payment='SELECT sum(amount) as totalfine FROM fine_amount where type="payment"';
-	var fineamount=0;
+exports.allexpenses = function(date, callback) {
+	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses';
+	var getdata_expense_all = 'SELECT * FROM expenses';
+	var alreadySpent=0;
 	var payments=0;
 	var dues=0;
-	connection.query(getdata_fine,function(err, result_f) {
+	connection.query(getdata_expense_sum,function(err, result_f) {
 						if (err) {
 							callback({
-								'response' : "DB error while getting data from table:fine_amount",
+								'response' : "DB error while getting data from table:expenses",
 								'res' : false
 							});
 						} else {
-							if (result_f[0].totalfine == null) {
-								callback({'message' : "No Fine Dues",
+							if (result_f[0].totalexpenses == null) {
+								callback({'message' : "No expenses ",
 									'res' : true,
 									'resp':false});
 							} else {
-								fineamount=result_f[0].totalfine;
+								alreadySpent=result_f[0].totalexpenses;
 							
-								connection.query(getdata_payment,function(err, result_p) {
+								connection.query(getdata_expense_all,function(err, result_p) {
 									if (err) {
 										callback({
-											'response' : "DB error while getting data from table:fine_amount",
+											'response' : "DB error while getting data from table:expenses",
 											'res' : false
 										});
 									}else{
-								payments=result_p[0].totalfine;
-								dues=fineamount-payments;
-								callback({'data' : dues,
+								callback({'data' : result_p,
 									'res' : true,
 									'resp':true});
 									}
