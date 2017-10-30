@@ -62,8 +62,8 @@ exports.allexpenses = function(date, callback) {
 							} else {
 								alreadySpent=result_expense[0].totalexpenses;
 								console.log('working fine till getting sum'+alreadySpent);
-									connection.query(getdata_expense_all,function(err, result_p) {
-									if (err) {
+									connection.query(getdata_expense_all,function(error, result_p) {
+									if (error) {
 										callback({
 											'response' : "DB error while getting data from table:expenses",
 											'res' : false
