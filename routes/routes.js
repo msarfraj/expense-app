@@ -220,13 +220,10 @@ var routes = function(app) {
 		 summary.allexpenses(day ,function(data) {
 			 if(data.res){
 				 if(data.resp){
-					 summary.allexpenses(function(summarydata){
-						 if(summarydata.res){
-							 res.render(path.resolve(viewdir+'/finesummary'),{total:data.data,datalist:summarydata.data});
-						 }else{
-							 res.render(path.resolve(viewdir+'/error'),{val:summarydata});
-						 }
-					 }) ;
+					// summary.allexpenses(function(summarydata){
+							 res.render(path.resolve(viewdir+'/finesummary'),{total:data.total,datalist:data.data});
+						 
+					 //}) ;
 				 }else{
 					res.render(path.resolve(viewdir+'/info'),{response:data.message});
 				 }

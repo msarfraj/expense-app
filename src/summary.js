@@ -71,7 +71,8 @@ exports.allexpenses = function(date, callback) {
 									}else{
 								callback({'data' : result_p,
 									'res' : true,
-									'resp':true});
+									'resp':true,
+									'total':alreadySpent});
 									}
 							});
 						}

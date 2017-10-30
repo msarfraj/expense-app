@@ -14,12 +14,12 @@
 </div>
 <% datalist.forEach(function(item) { %>
 <div class="row">
-   <div class="data_text">  <%= item.person %>
+   <div class="data_text">  <%= item.expense_title %>
      <script>
-	document.write('<a href="/getUser?' + '<%= item.person %>' + '">(view details)</a>');
+	document.write('<a href="/getUser?' + '<%= item.expense_title %>' + '">(view details)</a>');
 </script>
 </div>
-	<div class="data_text"><%= item.amount %></div>
+	<div class="data_text"><%= item.expense_amount %></div>
 	 <div class="data_text">
 	 <%if(request.session.fineowner){ %>
 	  <script>
