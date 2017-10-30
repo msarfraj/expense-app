@@ -1,7 +1,6 @@
 var connection = require('.././model/db');
 var nodemailer = require('nodemailer');
 var dataInfo=require('../util/./emailtemplate');
-
 exports.sendnotification = function(user, callback) {
 	console.log(user.lateTime+user.emailopt);
 	var smtpTransport = nodemailer.createTransport({
@@ -17,8 +16,6 @@ exports.sendnotification = function(user, callback) {
 		        rejectUnauthorized: false
 		    }
 	});
-	//var toemail = 'TUIDigitalHubTeamEverest@sapient.com';
-	//var toemail='TUI-DigitalHubTeamVictoria@sapient.com';
 	var toemail='msarfraj@sapient.com,lverma@sapient.com';
 	var frommail = 'Mohd Sarfraj <msarfraj@sapient.com>';
 	var opt=user.emailopt;
@@ -47,28 +44,24 @@ exports.sendnotification = function(user, callback) {
 				}
 			});
 }
-
 exports.allexpenses = function(date, callback) {
 	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses';
 	var getdata_expense_all = 'SELECT * FROM expenses';
 	var alreadySpent=0;
-	var payments=0;
-	var dues=0;
-	connection.query(getdata_expense_sum,function(err, result_f) {
+	connection.query(getdata_expense_sum,function(err, result_expense) {
 						if (err) {
 							callback({
 								'response' : "DB error while getting data from table:expenses",
 								'res' : false
 							});
 						} else {
-							if (result_f[0].totalexpenses == null) {
+							if (result_expense[0].totalexpenses == null) {
 								callback({'message' : "No expenses ",
 									'res' : true,
 									'resp':false});
 							} else {
-								alreadySpent=result_f[0].totalexpenses;
-							
-								connection.query(getdata_expense_all,function(err, result_p) {
+								alreadySpent=result_expense[0].totalexpenses;
+									connection.query(getdata_expense_all,function(err, result_p) {
 									if (err) {
 										callback({
 											'response' : "DB error while getting data from table:expenses",
@@ -123,4 +116,3 @@ exports.finesummary = function(callback) {
 						}
 					});
 }
-
