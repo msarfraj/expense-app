@@ -18,7 +18,10 @@
 </div>
 	<div class="data_text"><%= item.expense_amount %></div>
 	 <div class="data_text">
-	 <%= item.expense_date %>'
+	  <script>
+	document.write('<%= item.expense_date.getDate() %>' +"/"+ '<%= item.expense_date.getMonth() %>');
+</script>
+	 <%= item.expense_date.getDate() %>'
 </div>
 	</div>
     <% }); %>
