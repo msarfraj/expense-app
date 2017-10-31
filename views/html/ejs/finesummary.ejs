@@ -5,27 +5,20 @@
 <% include navbar %>
 <h2>Current dues: <%= total%></h2>
 <div class="content">
-<p>Fine Summary</p>
+<p>Expense Summary for Current Month</p>
 <div class="data">
 <div class="row">
-<div class="head_text">Name</div>
-<div class="head_text">Fine amount</div>
-<div class="head_text">Action</div>
+<div class="head_text">Purpose</div>
+<div class="head_text">Amount</div>
+<div class="head_text">Date</div>
 </div>
 <% datalist.forEach(function(item) { %>
 <div class="row">
-   <div class="data_text">  <%= item.expense_title %>
-     <script>
-	document.write('<a href="/getUser?' + '<%= item.expense_title %>' + '">(view details)</a>');
-</script>
+   <div class="data_text"><%= item.expense_title %>
 </div>
 	<div class="data_text"><%= item.expense_amount %></div>
 	 <div class="data_text">
-	 <%if(request.session.fineowner){ %>
-	  <script>
-	document.write('<a href="/addfine?' + '<%= item.person %>' + '">Add Fine</a>');
-</script>
-<%}%>
+	 <%= item.expense_date %>'
 </div>
 	</div>
     <% }); %>
