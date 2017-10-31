@@ -20,7 +20,8 @@
 	 <div class="data_text">
 	  <script>
 	  var dat = new Date(<%= item.expense_date.getDate() %>);
-	document.write('<%= dat.getDate() %>' +"/"+ '<%= dat.getMonth() %>');
+	  console.log(dat);
+	document.write(dat.getDate()+"/"+dat.getMonth());
 </script>
 	 <%= item.expense_date.getDate() %>
 </div>
