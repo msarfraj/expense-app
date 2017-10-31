@@ -19,7 +19,8 @@
 	<div class="data_text"><%= item.expense_amount %></div>
 	 <div class="data_text">
 	  <script>
-	document.write('<%= item.expense_date.getDate() %>' +"/"+ '<%= item.expense_date.getMonth() %>');
+	  var now = new Date(item.expense_date);
+	document.write('<%= now.getDate() %>' +"/"+ '<%= now.getMonth() %>');
 </script>
 	 <%= item.expense_date.getDate() %>'
 </div>
