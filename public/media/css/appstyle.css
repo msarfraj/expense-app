@@ -3,7 +3,7 @@ color: #ff0000;
 text-align:center;	
 }
 body {
-	 background: url("/img/big-bg.jpg") no-repeat center center fixed; 
+	background-color: lightblue;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -43,7 +43,7 @@ body {
 }
 .data_text{
 	display: table-cell;
-color: yellow;
+color: black;
 text-align:center;	
 border: 1px solid blue;
 }
@@ -151,7 +151,7 @@ ul.footer li{
     ul.footer li{float:none;}
     div.content {float:none;}
    body{ 
-    background: url("/img/small-bg.jpg") no-repeat; 
+  background-color: lightblue;
     background-size: cover;
    }
 }

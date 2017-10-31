@@ -17,14 +17,13 @@
    <div class="data_text"><%= item.expense_title %>
 </div>
 	<div class="data_text"><%= item.expense_amount %></div>
-	 <div class="data_text">
+	 <div id="dateText" class="data_text"></div>
 	  <script>
-	  var dat = new Date(<%= item.expense_date.getDate() %>);
-	  console.log(dat);
-	document.write(dat.getDate()+"/"+dat.getMonth());
+	  var dat = new Date(<%= item.expense_date %>);
+	 // console.log(dat);
+	//document.write(dat.getDate());
+	document.getElementById("dateText").innerHTML = dat.getUTCDate()+'/'+dat.getMonth();
 </script>
-	 <%= item.expense_date.getDate() %>
-</div>
 	</div>
     <% }); %>
     
