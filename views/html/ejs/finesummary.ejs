@@ -18,11 +18,10 @@
 </div>
 	<div class="data_text"><%= item.expense_amount %></div>
 	 <div id="dateText" class="data_text"></div>
-	 <%= item.expense_date %>
 	  <script>
-	  var dat = new Date('<%= item.expense_date %>');
+	  var dat = new Date(<%= item.expense_date %>);
 	  console.log("dat",dat);
-	document.getElementById("dateText").innerHTML = dat.getMonth();
+	document.write(dat.getDate()+1,"/",d.getMonth()+1);
 </script>
 	</div>
     <% }); %>
