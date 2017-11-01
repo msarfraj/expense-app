@@ -17,12 +17,12 @@
    <div class="data_text"><%= item.expense_title %>
 </div>
 	<div class="data_text"><%= item.expense_amount %></div>
-	 <div id="dateText" class="data_text"></div>
-	  <script>
-	  var dat = new Date(<%= item.expense_date %>);
-	  console.log("dat",dat);
-	document.write(dat.getDate()+1,"/",dat.getMonth()+1);
-</script>
+	 <div id="dateText" class="data_text"> 
+		 <script>
+		  	var dat = new Date(<%= item.expense_date %>);
+			document.write(dat.getDate()+1,"/",dat.getMonth()+1);
+		 </script>
+	 </div>
 	</div>
     <% }); %>
  </div>   
