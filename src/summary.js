@@ -48,18 +48,19 @@ exports.sendnotification = function(user, callback) {
 exports.allexpenses = function(dayOne, callback) {
 	var d=new Date();
 	var today=dateFormat(d, "dd-mm-yy");
-	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where expense_date>dayOne and expense_date<today';
-	var getdata_expense_all = 'SELECT * FROM expenses where expense_date>dayOne and expense_date<today';
+	console.log(today+'/'+dayOne);
+	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'")';
+	var getdata_expense_all = 'SELECT * FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'")';
 	var alreadySpent=0;
 	connection.query(getdata_expense_sum,function(err, result_expense) {
 						if (err) {
 							callback({
-								'response' : "DB error while getting data from table:expenses",
+								'response' : "DB error while getting sum from table:expenses",
 								'res' : false
 							});
 						} else {
 							if (result_expense[0].totalexpenses == null) {
-								callback({'message' : "No expenses ",
+								callback({'message' : "No expenses for this month ",
 									'res' : true,
 									'resp':false});
 							} else {
