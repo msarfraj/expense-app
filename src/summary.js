@@ -47,7 +47,7 @@ exports.sendnotification = function(user, callback) {
 }
 exports.allexpenses = function(dayOne, callback) {
 	var d=new Date();
-	var today=dateFormat(d, "dd-mm-yy");
+	var today=dateFormat(d, "yyyy-mm-dd");
 	console.log(today+'/'+dayOne);
 	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'")';
 	var getdata_expense_all = 'SELECT * FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'")';

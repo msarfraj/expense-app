@@ -1,10 +1,11 @@
 var connection=require('.././model/db');
 var dateFormat = require('dateformat');
 exports.addexpense = function(trandate, amount, title,reason,type,callback) {
-			if(trandate.length==0){
-				trandate=dateFormat(new Date(), "dd-mm-yy");
+	console.log("before",trandate);		
+	if(trandate.length==0){
+				trandate=dateFormat(new Date(), "yyyy-mm-dd");
 			}else{
-				trandate=dateFormat(trandate, "dd-mm-yy");
+				trandate=dateFormat(trandate, "yyyy-mm-dd");
 			}
 			console.log(trandate);
 			var insert_data_Query='insert into expenses(expense_date,expense_amount,expense_title,comments,payment_mode) values("'+trandate+'","'+amount+'","'+title+'","'+reason+'","'+type+'")' ;

@@ -2,7 +2,7 @@ var crypto = require('crypto');
 var rand = require('csprng');
 var connection=require('.././model/db');
  
-exports.register = function(name,email,mobile,ntid,callback) {
+exports.adddebt = function(name,amount,date,mode,info,callback) {
 	var get_data_Query='SELECT emailid FROM employee_data WHERE emailid ='+'"'+email+'"';
 connection.query(get_data_Query,function(err,result){
 	if(err){

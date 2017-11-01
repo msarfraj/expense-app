@@ -1,6 +1,6 @@
 var chgpass = require('../src/chpass');
 var addspent = require('../src/addexpense');
-var register = require('../src/register');
+var adddebt = require('../src/adddebt');
 var login = require('../src/login');
 var url=require('url');
 var fs = require('fs');
@@ -16,27 +16,6 @@ var os = require("os");
 var dateFormat = require('dateformat');
 var routes = function(app) {
 	var viewdir='views/html/ejs';
-	app.get('/notifyall', function(req, res) {
-		res.render(path.resolve(viewdir+'/notifyteam'));
-	});
-
-	app.post('/sendemail', function(req, res) {
-		var name = req.body.name;
-		var emailopt = req.body.emailopt;
-		var lateTime=req.body.latetime;
-		var comment=req.body.comment;
-		var name,email;
-
-		var response;
-		
-				var user= {emailopt:emailopt,lateTime:lateTime,comment:comment,name:name,email:email};
-				summary.sendnotification(user,function(notificationdata){
-							console.log("sent email data");
-							res.render(path.resolve(viewdir+'/info'),{response:notificationdata.response});
-						});
-	});
-
-
 	app.get('/', function(req, res) {
 		res.render(path.resolve(viewdir+'/home'));
 	});
@@ -62,8 +41,8 @@ var routes = function(app) {
 			res.render(path.resolve(viewdir+'/login'));
 		}
 	});
-	app.get('/addmember', function(req, res) {
-		res.render(path.resolve(viewdir+'/register'));
+	app.get('/doadddebt', function(req, res) {
+		res.render(path.resolve(viewdir+'/adddebt'));
 	});
 	app.get('/dochangepass', function(req, res) {
 		res.render(path.resolve(viewdir+'/passchange'));
@@ -86,26 +65,15 @@ var routes = function(app) {
 	app.get('/doregister', function(req, res) {
 		res.render(path.resolve(viewdir+'/register'));
 	});
-	app.post('/register', function(req, res) {
-		var email = req.body.email;
+	app.post('/adddebt', function(req, res) {
+		var amount = req.body.amount;
 		var name = req.body.name;
-		var number=req.body.cellno;
-		var ntid=req.body.ntid;
-		register.register(name,email,number,ntid, function(found) {
+		var date=req.body.paydate;
+		var info=req.body.purpose;
+		var mode=req.body.paymentMode;
+		adddebt.adddebt(name,amount,date,mode,info, function(found) {
 			if(found.res){
 				res.render(path.resolve(viewdir+'/regSucess'),{val:found});
-			}else{
-				res.render(path.resolve(viewdir+'/error'),{val:found});
-			}
-		});
-	});
-	app.post('/changepass', function(req, res) {
-		var name = req.body.name;
-		var oldPass = req.body.oldpass;
-		var newPass = req.body.newpass;
-		chgpass.changepass(name, oldPass, newPass, function(found) {
-			if(found.res){
-				res.render(path.resolve(viewdir+'/passChangeSucess'));
 			}else{
 				res.render(path.resolve(viewdir+'/error'),{val:found});
 			}
@@ -136,28 +104,7 @@ var routes = function(app) {
 		}
 	});
 	app.get('/addtransaction', function(req, res) {
-			
 				res.render(path.resolve(viewdir+'/addexpense'));
-
-	});
-	app.get('/addfine', function(req, res) {
-		req.session.emp=decodeURIComponent(req.url.split('?')[1]);
-		res.render(path.resolve(viewdir+'/addfine'));
-	});
-	app.post('/addfinedb', function(req, res) {
-		var trandate = req.body.finedate;
-		var amount = req.body.amount;
-		var name = req.session.emp;
-		var reason = req.body.reason;
-		var type='fine';
-		addspent.addfinetrans(trandate, amount, name,reason,type, function(data) {
-			if(data.res){
-				res.render(path.resolve(viewdir+'/transuccess'),{val:data});
-			}else{
-				console.log(data.response);
-				res.render(path.resolve(viewdir+'/error'),{val:data,session: req.session});
-			}
-		});
 	});
 	app.post('/addexpense', function(req, res) {
 		var trandate = req.body.expenseDate;
