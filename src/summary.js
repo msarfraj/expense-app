@@ -44,11 +44,11 @@ exports.sendnotification = function(user, callback) {
 				}
 			});
 }
-exports.allexpenses = function(date, callback) {
-	var dayOne=date;
-	dayOne.setDate(1);
-	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where expense_date>dayOne and expense_date<date';
-	var getdata_expense_all = 'SELECT * FROM expenses where expense_date>dayOne and expense_date<date';
+exports.allexpenses = function(dayOne, callback) {
+	var d=new Date();
+	var today=dateFormat(d, "dd-mm-yy");
+	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where expense_date>dayOne and expense_date<today';
+	var getdata_expense_all = 'SELECT * FROM expenses where expense_date>dayOne and expense_date<today';
 	var alreadySpent=0;
 	connection.query(getdata_expense_sum,function(err, result_expense) {
 						if (err) {
