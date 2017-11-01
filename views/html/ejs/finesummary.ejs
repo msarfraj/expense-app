@@ -21,7 +21,7 @@
 	  <script>
 	  var dat = new Date(<%= item.expense_date %>);
 	  <%= dat %>
-	document.getElementById("dateText").innerHTML = dat.getUTCDate()+'/'+dat.getMonth();
+	document.getElementById("dateText").innerHTML = dat.getDate()+'/'+dat.getMonth();
 </script>
 	</div>
     <% }); %>
