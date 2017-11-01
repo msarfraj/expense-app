@@ -211,7 +211,7 @@ var routes = function(app) {
 	});
 	app.get('/ehome', function(req, res) {
 		var d=new Date();
-		var day=dateFormat(d, "yyyy-mm-dd");
+		var day=dateFormat(d, "dd-mm-yy");
 		 summary.allexpenses(day ,function(data) {
 			 if(data.res){
 				 if(data.resp){

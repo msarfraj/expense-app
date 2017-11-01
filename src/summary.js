@@ -45,8 +45,10 @@ exports.sendnotification = function(user, callback) {
 			});
 }
 exports.allexpenses = function(date, callback) {
-	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses';
-	var getdata_expense_all = 'SELECT * FROM expenses';
+	var dayOne=date;
+	dayOne.setDate(1);
+	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where expense_date>dayOne and expense_date<date';
+	var getdata_expense_all = 'SELECT * FROM expenses where expense_date>dayOne and expense_date<date';
 	var alreadySpent=0;
 	connection.query(getdata_expense_sum,function(err, result_expense) {
 						if (err) {
