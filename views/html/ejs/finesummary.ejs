@@ -20,7 +20,9 @@
 	 <div id="dateText" class="data_text"> 
 		 <script>
 		  	var dat = new Date(<%= item.expense_date %>);
-			document.write(dat.getDate()+1,"/",dat.getMonth()+1);
+		  	var day=dat.getDate()+1;
+		  	var month=dat.getMonth()+1;
+			document.write(day,"/",month);
 		 </script>
 	 </div>
 	</div>
