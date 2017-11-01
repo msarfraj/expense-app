@@ -19,11 +19,8 @@
 	<div class="data_text"><%= item.expense_amount %></div>
 	 <div id="dateText" class="data_text"> 
 		 <script>
-		 console.log('<%= item.expense_date %>');
 		  	var dat = new Date('<%= item.expense_date %>');
-		  	console.log(dat.getDate());
 		  	var day=dat.getDate()+1;
-		  	console.log(dat.getMonth());
 		  	var month=dat.getMonth()+1;
 			document.write(day,"/",month);
 		 </script>
