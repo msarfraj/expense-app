@@ -20,7 +20,7 @@
 	 <div id="dateText" class="data_text"></div>
 	 <%= item.expense_date %>
 	  <script>
-	  var dat = new Date(<%= item.expense_date %>);
+	  var dat = new Date('<%= item.expense_date %>');
 	  console.log("dat",dat);
 	document.getElementById("dateText").innerHTML = dat.getMonth();
 </script>
