@@ -1,6 +1,7 @@
 var connection = require('.././model/db');
 var nodemailer = require('nodemailer');
 var dataInfo=require('../util/./emailtemplate');
+var dateFormat = require('dateformat');
 exports.sendnotification = function(user, callback) {
 	console.log(user.lateTime+user.emailopt);
 	var smtpTransport = nodemailer.createTransport({
