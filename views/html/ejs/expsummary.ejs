@@ -3,7 +3,7 @@
 <% include header %>
 <body>
 <% include navbar %>
-<h2>Current dues: <%= total%></h2>
+<h2>Current dues: <%= data.total%></h2>
 <div class="content">
 <p>Expense Summary for <b><%= month%></b></p>
 <div class="data">
@@ -13,7 +13,7 @@
 <div class="head_text">Date</div>
 <div class="head_text">Info</div>
 </div>
-<% datalist.forEach(function(item) { %>
+<% data.data.forEach(function(item) { %>
 <div class="row">
    <div class="data_text"><%= item.expense_title %></div>
 	<div class="data_text"><%= item.expense_amount %></div>
