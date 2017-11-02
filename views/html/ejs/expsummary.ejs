@@ -5,19 +5,19 @@
 <% include navbar %>
 <h2>Current dues: <%= total%></h2>
 <div class="content">
-<p>Expense Summary for Current Month</p>
+<p>Expense Summary for <b><%= month%></b></p>
 <div class="data">
 <div class="row">
 <div class="head_text">Purpose</div>
 <div class="head_text">Amount</div>
 <div class="head_text">Date</div>
+<div class="head_text">Info</div>
 </div>
 <% datalist.forEach(function(item) { %>
 <div class="row">
-   <div class="data_text"><%= item.expense_title %>
-</div>
+   <div class="data_text"><%= item.expense_title %></div>
 	<div class="data_text"><%= item.expense_amount %></div>
-	 <div id="dateText" class="data_text"> 
+	 <div id="dateText" class="data_text">
 		 <script>
 		  	var dat = new Date('<%= item.expense_date %>');
 		  	var day=dat.getDate();
@@ -25,9 +25,10 @@
 			document.write(day,"/",month);
 		 </script>
 	 </div>
+   <div class="data_text"><%= item.comments %></div>
 	</div>
     <% }); %>
- </div>   
+ </div>
     </div>
     <% include footer %>
 </body>

@@ -160,10 +160,12 @@ var routes = function(app) {
 		var d=new Date();
 		d.setDate(1);
 		var day=dateFormat(d, "dd-mm-yy");
+		var monthArr=["January","February","March","April","May","June","July","August","September","October","November","December"];
+		var month=monthArr[d.getMonth()];
 		 summary.allexpenses(day ,function(data) {
 			 if(data.res){
 				 if(data.resp){
-							 res.render(path.resolve(viewdir+'/finesummary'),{total:data.total,datalist:data.data});
+							 res.render(path.resolve(viewdir+'/finesummary'),{month:month,total:data.total,datalist:data.data});
 				 }else{
 					res.render(path.resolve(viewdir+'/info'),{response:data.message});
 				 }
