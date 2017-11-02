@@ -159,7 +159,7 @@ var routes = function(app) {
 	app.get('/ehome', function(req, res) {
 		var d=new Date();
 		d.setDate(1);
-		var day=dateFormat(d, "dd-mm-yy");
+		var day=dateFormat(d, "yyyy-mm-dd");
 		var monthArr=["January","February","March","April","May","June","July","August","September","October","November","December"];
 		var month=monthArr[d.getMonth()];
 		 summary.allexpenses(day ,function(data) {
