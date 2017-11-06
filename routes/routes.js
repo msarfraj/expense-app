@@ -7,7 +7,7 @@ var fs = require('fs');
 var path    = require('path');
 var ejs = require('ejs');
 var trans=require('../src/trans');
-var usermodel=require('../src/viewUsers');
+var usermodel=require('../src/viewPerson');
 var history = require('../src/userhistory');
 var summary = require('../src/summary');
 var feedback = require('../src/feedback');
@@ -71,7 +71,9 @@ var routes = function(app) {
 		var date=req.body.paydate;
 		var info=req.body.purpose;
 		var mode=req.body.paymentMode;
-		adddebt.adddebt(name,amount,date,mode,info, function(found) {
+		var type=req.body.paymentType;
+		var person=req.body.person;
+		adddebt.adddebt(name,amount,date,mode,info,type,person, function(found) {
 			if(found.res){
 				res.render(path.resolve(viewdir+'/regSucess'),{val:found});
 			}else{
@@ -120,10 +122,10 @@ var routes = function(app) {
 			}
 		});
 	});
-	app.get('/viewmembers', function(req, res) {
-			usermodel.viewUsers(function(data) {
+	app.get('/viewbalance', function(req, res) {
+		summary.balanceSummary(function(data) {
 			if(data.res){
-				res.render(path.resolve(viewdir+'/userlisting'),{val:data});
+				res.render(path.resolve(viewdir+'/balanceSummary'),{val:data});
 			}else{
 				res.render(path.resolve(viewdir+'/error'),{val:data});
 			}
@@ -132,19 +134,9 @@ var routes = function(app) {
 	app.get('/removemember', function(req, res) {
 		res.render(path.resolve(viewdir+'/removeMember'),{val:req.session.user,session: req.session});
 	});
-	app.get('/removeme', function(req, res) {
-		var email=req.url.split('?')[1];
-		if(req.session.user&&req.session.user.email==email){
-			res.render(path.resolve(viewdir+'/userActionResult'),{val:{'response':'Logged in User cannot be removed.'}});
-		}else{
-			history.removeme(email, function(found) {
-			res.render(path.resolve(viewdir+'/userActionResult'),{val:found});
-		});
-	}
-	});
-	app.get('/getUser?', function(req, res) {
+	app.get('/getDetails?', function(req, res) {
 		var name=req.url.split('?')[1];
-			history.history(decodeURIComponent(name) ,function(data) {
+		usermodel.getPerson(decodeURIComponent(name),function(data) {
 			if(data.res){
 				res.render(path.resolve(viewdir+'/userHistory'),{val:data});
 			}else{

@@ -1,6 +1,7 @@
 exports.root_url = "http://localhost:3500/";
 exports.min_vanity_length = 4;
 exports.num_of_urls_per_hour = 50;
+exports.date_format ="yyyy-mm-dd";
 
 exports.get_user_query = 'SELECT * FROM user_data WHERE userid =';
 exports.add_query = 'INSERT INTO user_data SET userid = {userid}, email = {email}, password = {password}';

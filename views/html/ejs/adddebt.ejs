@@ -5,11 +5,17 @@
 <% include navbar %>
 
 <div class="content">
-<p>Enter a debt</p>
+<p>Add details:</p>
 <form action="/adddebt" method="post" onsubmit="return validateRegister(this)">
 <div class="data">
+	<div class="row">
+	<div class="block_text">Name</div>
+	<div class="block_input">
+	<input type="text" name="person" />
+	</div>
+	</div>
 <div class="row">
-<div class="block_text">Name</div>
+<div class="block_text">Title</div>
 <div class="block_input">
 <input type="text" name="name" />
 </div>
@@ -22,15 +28,28 @@
 <div class="block_text">Date</div>
 <div class="block_input"> <input type="date" name="paydate" /></div>
 </div>
+<div class="row">
 <div class="block_text">Type</div>
 	<div class="block_input">
-		<select name="paymentMode" >
-		  <option value="credit">Credit</option>
-		  <option value="debit">Debit</option>
+		<select name="paymentType" >
+		  <option value="given">Given</option>
+		  <option value="taken">Taken</option>
 		</select>
 	</div>
+</div>
 <div class="row">
-<div class="block_text">Purpose</div>
+<div class="block_text">Paid Through</div>
+	<div class="block_input">
+		<select name="paymentMode" >
+		  <option value="Credit Card">Credit Card</option>
+		  <option value="Debit Card">Debit Card</option>
+		  <option value="Cash">Cash</option>
+		  <option value="Account Transfer">Account Transfer</option>
+		</select>
+	</div>
+</div>
+<div class="row">
+<div class="block_text">More Info</div>
 <div class="block_input"> <input type="text" name="purpose" /></div>
 </div>
 <span class="submit"><input type="submit" value="Submit"> </span>

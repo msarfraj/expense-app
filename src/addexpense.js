@@ -1,13 +1,12 @@
 var connection=require('.././model/db');
 var dateFormat = require('dateformat');
+var dataInfo=require('../util/./constants');
 exports.addexpense = function(trandate, amount, title,reason,type,callback) {
-	console.log("before",trandate);		
 	if(trandate.length==0){
-				trandate=dateFormat(new Date(), "yyyy-mm-dd");
+				trandate=dateFormat(new Date(), dataInfo.date_format);
 			}else{
-				trandate=dateFormat(trandate, "yyyy-mm-dd");
+				trandate=dateFormat(trandate, dataInfo.date_format);
 			}
-			console.log(trandate);
 			var insert_data_Query='insert into expenses(expense_date,expense_amount,expense_title,comments,payment_mode) values("'+trandate+'","'+amount+'","'+title+'","'+reason+'","'+type+'")' ;
 			connection.query(insert_data_Query,function(err,result){
 				if(err){
@@ -22,7 +21,7 @@ exports.addexpense = function(trandate, amount, title,reason,type,callback) {
 
 exports.updateamount = function(trandate, amount,name,owner,callback) {
 	if(trandate.length==0){
-		trandate=dateFormat(new Date(), "yyyy-mm-dd");
+		trandate=dateFormat(new Date(), dataInfo.date_format);
 	}
 	var insert_data_Query='insert into transactions(paidon,amount,fineowner,paidby) values("'+trandate+'","'+amount+'","'+owner+'","'+name+'")' ;
 	connection.query(insert_data_Query,function(err,result){

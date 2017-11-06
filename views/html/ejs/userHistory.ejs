@@ -11,14 +11,18 @@
 <div class="head_text">Date</div>
 <div class="head_text">Reason</div>
 <div class="head_text">Type</div>
+<div class="head_text">Paid Through</div>
+<div class="head_text">More Info</div>
 </div>
 <%val.response.forEach(function(item) { %>
 <div class="row">
-   <div class="data_text"> <%= item.person %> </div>
+<div class="data_text"> <%= item.person %> </div>
 <div class="data_text"><%= item.amount %></div>
-<div class="data_text"><%= item.finedate.toDateString() %></div>
-<div class="data_text"> <%= item.reasonText %> </div>
+<div class="data_text"><%= item.lending_date.toDateString() %></div>
+<div class="data_text"> <%= item.title %> </div>
 <div class="data_text"> <%= item.type %> </div>
+<div class="data_text"> <%= item.payment_mode %> </div>
+<div class="data_text"> <%= item.comment %> </div>
  </div>
   <% }); %>
     </div>

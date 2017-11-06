@@ -2,49 +2,6 @@ var connection = require('.././model/db');
 var nodemailer = require('nodemailer');
 var dataInfo=require('../util/./emailtemplate');
 var dateFormat = require('dateformat');
-exports.sendnotification = function(user, callback) {
-	console.log(user.lateTime+user.emailopt);
-	var smtpTransport = nodemailer.createTransport({
-		host : 'webmail.sapient.com',
-		port : 587,
-		auth : {
-			domain : 'sapient',
-			user : 'msarfr',
-			pass : 'Myname90'
-		},
-		authentication: 'plain',
-		 tls: {
-		        rejectUnauthorized: false
-		    }
-	});
-	var toemail='msarfraj@sapient.com,lverma@sapient.com';
-	var frommail = 'Mohd Sarfraj <msarfraj@sapient.com>';
-	var opt=user.emailopt;
-	var subject =user.name+" is "+ dataInfo.subject[opt];
-	var hi="<p>Hi,<br>"+user.name;
-	var messagebody ;
-	if(opt=='late'){
-		messagebody= hi+dataInfo.body[opt]+user.lateTime+".";
-	}else{
-		messagebody=hi+ dataInfo.body[opt];
-	}
-			var mailOptions = {
-				from : frommail,
-				to : toemail,
-				subject : subject,
-				html : messagebody+user.comment+"</p><br>Thanks,<br>Mohd Sarfraj"
-			}
-			smtpTransport.sendMail(mailOptions, function(error, response) {
-				if (error) {
-					callback({'response' : "Sending Email." + error.message,'res' : false
-					});
-
-				} else {
-					callback({'response' : "Sent email.",'res' : true});
-
-				}
-			});
-}
 exports.allexpenses = function(dayOne, callback) {
 	var d=new Date();
 	var today=dateFormat(d, "yyyy-mm-dd");
@@ -84,38 +41,18 @@ exports.allexpenses = function(dayOne, callback) {
 					});
 }
 
-exports.finesummary = function(callback) {
-	var getdata_fine = 'SELECT person,sum(amount) as amount FROM fine_amount where type="fine" group by person ';
-	var getdata_payment = 'SELECT person,sum(amount) as amount FROM fine_amount where type="payment" group by person ';
-	connection.query(getdata_fine,function(err, resultfine) {
+exports.balanceSummary = function(callback) {
+	var getdata_balance = 'SELECT person,sum(amount) as amount FROM credit_debit group by person';
+	connection.query(getdata_balance,function(err, resultBalance) {
 						if (err) {
-							callback({'response' : "DB error while getting data from table:fine_amount",
+							callback({'response' : "DB error while getting data from table:credit_debit",
 								'res' : false});
 						} else {
-							if (resultfine.length == 0) {
+							if (resultBalance.length == 0) {
 								callback({'response' : "No data",
 									'res' : true});
 							} else {
-								connection.query(getdata_payment,function(err, resultpayment) {
-									if (err) {
-										callback({'response' : "DB error while getting data from table:fine_amount",
-											'res' : false});
-									} else {
-										if (resultpayment.length == 0) {
-											callback({'response' : "No data",
-												'res' : true});
-										} else {
-											for(i=0;i<resultfine.length;i++){
-												for(j=0;j<resultpayment.length;j++){
-													if(resultfine[i].person==resultpayment[j].person){
-														resultfine[i].amount=resultfine[i].amount-resultpayment[j].amount;
-													}
-													}
-												}
-										}
-									}
-								});
-								callback({'data' : resultfine,
+								callback({'data' : resultBalance,
 									'res' : true,
 									'resp':true});
 							}

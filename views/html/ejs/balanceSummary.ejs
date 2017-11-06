@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+<div class="content">
+<div class="data">
+<div class="row">
+<div class="head_text">Name</div>
+<div class="head_text">Amount</div>
+</div>
+<%val.data.forEach(function(item) { %>
+<div class="row">
+<div class="data_text">
+      <script>
+	document.write('<a href="/getDetails?' + '<%= item.person %>' + '"><%= item.person %></a>');
+</script>
+
+</div>
+   <div class="data_text"><%= item.amount %></div>
+     
+     </div>
+    <% }); %>
+ </div>   
+    </div>
+    <% include footer %>
+</body>
+</html>
