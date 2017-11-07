@@ -7,7 +7,7 @@ exports.allexpenses = function(dayOne, callback) {
 	var today=dateFormat(d, "yyyy-mm-dd");
 	console.log(today+'/'+dayOne);
 	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'")';
-	var getdata_expense_all = 'SELECT * FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'")';
+	var getdata_expense_all = 'SELECT * FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'") order by expense_date ASC';
 	var alreadySpent=0;
 	connection.query(getdata_expense_sum,function(err, result_expense) {
 						if (err) {
@@ -22,7 +22,6 @@ exports.allexpenses = function(dayOne, callback) {
 									'resp':false});
 							} else {
 								alreadySpent=result_expense[0].totalexpenses;
-								console.log('working fine till getting sum'+alreadySpent);
 									connection.query(getdata_expense_all,function(error, result_p) {
 									if (error) {
 										callback({
