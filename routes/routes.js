@@ -11,6 +11,7 @@ var usermodel=require('../src/viewPerson');
 var history = require('../src/userhistory');
 var summary = require('../src/summary');
 var feedback = require('../src/feedback');
+var notify = require('../src/notify');
 var cron = require('node-schedule');
 var os = require("os");
 var dateFormat = require('dateformat');
@@ -75,7 +76,16 @@ var routes = function(app) {
 		var person=req.body.person;
 		adddebt.adddebt(name,amount,date,mode,info,type,person, function(found) {
 			if(found.res){
-				res.render(path.resolve(viewdir+'/regSucess'),{val:found});
+				console.log("sending email");
+				notify.sendemail(name,type,amount,function(data){
+					if(data.res){
+						console.log("email sent");
+						res.render(path.resolve(viewdir+'/regSucess'),{val:data});
+					}else{
+						console.log("unable to send email");
+						res.render(path.resolve(viewdir+'/regSucess'),{val:found,email:"unable to notify person"});	
+					}
+				});
 			}else{
 				res.render(path.resolve(viewdir+'/error'),{val:found});
 			}
