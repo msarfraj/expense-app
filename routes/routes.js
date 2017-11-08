@@ -79,15 +79,15 @@ var routes = function(app) {
 				console.log("sending email");
 				notify.sendemail(name,type,amount,function(data){
 					if(data.res){
-						console.log("email sent");
-						res.render(path.resolve(viewdir+'/regSucess'),{val:found,model:data});
+						console.log("sent email data"+data.mailresp);
+						res.render(path.resolve(viewdir+'/regSucess'),{val:found});
 					}else{
-						console.log("unable to send email");
-						res.render(path.resolve(viewdir+'/regSucess'),{val:found,model:data});	
+						console.log("unable to sent email data"+data.mailresp);
+						res.render(path.resolve(viewdir+'/regSucess'),{val:found});	
 					}
 				});
 			}else{
-				res.render(path.resolve(viewdir+'/error'),{val:found,model:""});
+				res.render(path.resolve(viewdir+'/error'),{val:found});
 			}
 		});
 	});
