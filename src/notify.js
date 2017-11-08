@@ -29,12 +29,12 @@ exports.sendemail = function(name,type,amount, callback) {
 	smtpTransport.sendMail(mailOptions, function(error, response) {
 		if (error) {
 			callback({
-				'response' : "Error occured." + error.message,
+				'mailresp' : "Error occured." + error.message,
 				'res' : false});
 		} else {
 
 			callback({
-				'response' : "User Notified",
+				'mailresp' : "User Notified",
 				'res' : true
 			});
 

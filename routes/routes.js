@@ -80,14 +80,14 @@ var routes = function(app) {
 				notify.sendemail(name,type,amount,function(data){
 					if(data.res){
 						console.log("email sent");
-						res.render(path.resolve(viewdir+'/regSucess'),{val:data});
+						res.render(path.resolve(viewdir+'/regSucess'),{val:found,model:data});
 					}else{
 						console.log("unable to send email");
-						res.render(path.resolve(viewdir+'/regSucess'),{val:found,email:"unable to notify person"});	
+						res.render(path.resolve(viewdir+'/regSucess'),{val:found,model:data});	
 					}
 				});
 			}else{
-				res.render(path.resolve(viewdir+'/error'),{val:found});
+				res.render(path.resolve(viewdir+'/error'),{val:found,model:""});
 			}
 		});
 	});
