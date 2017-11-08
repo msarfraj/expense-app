@@ -77,7 +77,7 @@ var routes = function(app) {
 		adddebt.adddebt(name,amount,date,mode,info,type,person, function(found) {
 			if(found.res){
 				console.log("sending email");
-				notify.sendemail(name,type,amount,function(data){
+				notify.sendemail(person,type,amount,function(data){
 					if(data.res){
 						console.log("sent email data"+data.mailresp);
 						res.render(path.resolve(viewdir+'/regSucess'),{val:found});
