@@ -2,12 +2,17 @@ var connection = require('.././model/db');
 var nodemailer = require('nodemailer');
 var mailinfo=require('../util/./emailtemplate');
 
- var smtpTransport = nodemailer.createTransport({ service: "Gmail", auth: {
-	 user: "sapems17@gmail.com", pass: "hellosapient"} });
+ var smtpTransport = nodemailer.createTransport(
+		 {
+			 service: "gmail",
+			 auth: {
+				 	user: "sapems17@gmail.com",
+				 	pass: "hellosapient"
+				 	} });
 
 exports.sendemail = function(name,type,amount, callback) {
 	var toemail = mailinfo.email[name];
-	var frommail = 'Sape Admin';
+	var frommail = '"Sape Admin"<sapems17@gmail.com>';
 	var subject = "Sarfraj added balance for You";
 	var typeMessage="You owe Sarfraj:"+amount+"Rs.";
 	if(type=='taken'){
