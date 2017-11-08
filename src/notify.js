@@ -11,6 +11,7 @@ var mailinfo=require('../util/./emailtemplate');
 				 	} });
 
 exports.sendemail = function(name,type,amount, callback) {
+	console.log(name+"email:"+mailinfo.email[name]);
 	var toemail = mailinfo.email[name];
 	var frommail = '"Sape Admin" <sapems17@gmail.com>';
 	var subject = "Sarfraj added balance for You";
