@@ -93,15 +93,6 @@ function validateLogin(formData){
         alert("You Must fill the Email");
         formData.emailid.focus();
         return false;
-    }else{
-    	var x=formData.emailid.value;
-    	 var atpos = x.indexOf("@");
-    	    var dotpos = x.lastIndexOf(".");
-    	    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-    	        alert("Not a valid e-mail address");
-    	        formData.emailid.focus();
-    	        return false;
-    	    }
     }
 	if (formData.password.value == "") {
         alert("You Must fill the Password");

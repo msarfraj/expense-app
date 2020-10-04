@@ -1,19 +1,18 @@
 <ul class="topnav" id="myTopnav">
 <li> <a class="active" href="/">Home</a></li>
+<% if(request.session.user){ %>
 <li> <a href="/addtransaction">Add Spend</a></li>
                 <li ><a href="/ehome">Expense Summary</a></li>
                  <li ><a href="/doadddebt">Add balance</a></li>
                  <li ><a href="/feedback">Feedback</a></li>
                 <li >
-                
-<% if(request.session.user){ %>
 <a href="/logout">Logout <%=request.session.user.empname%> </a>
 <% }else{ %>
-<a href="/dologin">Owner Login</a>
+<li><a href="/dologin" class="item">Login</a></li>
 <% } %>
 </li>
 <li class="icon">
     <a href="javascript:void(0);" onclick="myFunction()">☰</a>
   </li>
-                </ul>
+</ul>
  
