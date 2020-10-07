@@ -2,8 +2,9 @@
 <li> <a class="active" href="/">Home</a></li>
 <% if(request.session.user){ %>
 <li> <a href="/addtransaction">Add Spend</a></li>
-                <li ><a href="/ehome">Expense Summary</a></li>
                  <li ><a href="/doadddebt">Add balance</a></li>
+                 <li ><a href="/ehome">Expense Summary</a></li>
+                 <li ><a href="/shome">Stock Summary</a></li>
                  <li ><a href="/feedback">Feedback</a></li>
                 <li >
 <a href="/logout">Logout <%=request.session.user.empname%> </a>

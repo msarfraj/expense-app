@@ -1,6 +1,6 @@
 var chgpass = require('../src/chpass');
 var addspent = require('../src/addexpense');
-var adddebt = require('../src/adddebt');
+var addprofit = require('../src/addpnldata');
 var login = require('../src/login');
 var url=require('url');
 var fs = require('fs');
@@ -177,10 +177,36 @@ var routes = function(app) {
 		});
 
 	});
+	app.get('/shome', function(req, res) {
+		res.render(path.resolve(viewdir+'/stocksummary'));
+	});
+	app.get('/addpnldata', function(req, res) {
+		res.render(path.resolve(viewdir+'/addpnldata'));
+	});
+	app.post('/addpnl', function(req, res) {
+		var stock = req.body.stock;
+		var entry = req.body.entry;
+		var exit = req.body.exit;
+		var date=req.body.date;
+		var bookedamount=req.body.bookedamount;
+		var pltype=req.body.pltype;
+		var comment=req.body.comment;
+		addprofit.pnldata(stock, entry,exit,date,bookedamount,pltype,comment, function(data) {
+			if(data.res){
+				res.render(path.resolve(viewdir+'/transuccess'),{val:data});
+			}else{
+				res.render(path.resolve(viewdir+'/error'),{val:data});
+			}
+		});
+	});
 	app.get('*', function(req, res){
 		res.render(path.resolve(viewdir+'/error'),{val:{response:"Not Found"}});
 		});
 
+
+
 };
+
+
 
 module.exports = routes;

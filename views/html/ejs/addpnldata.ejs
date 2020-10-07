@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include header %>
+<body>
+<% include navbar %>
+
+<div class="content">
+<p>Add details:</p>
+<form action="/addpnl" method="post">
+<div class="data">
+	<div class="row">
+	<div class="block_text">Scrip</div>
+	<div class="block_input">
+	<input type="text" name="stock" />
+	</div>
+	</div>
+<div class="row">
+<div class="block_text">Entry</div>
+<div class="block_input">
+<input type="text" name="entry" />
+</div>
+</div>
+<div class="row">
+<div class="block_text">Exit</div>
+<div class="block_input"> <input type="text" name="exit" /></div>
+</div>
+<div class="row">
+<div class="block_text">Date</div>
+<div class="block_input"> <input type="date" name="date" /></div>
+</div>
+<div class="row">
+<div class="block_text">Amount</div>
+	<div class="block_input">
+		<input type="text" name="bookedamount" /></div>
+	</div>
+</div>
+<div class="row">
+<div class="block_text">Loss/Profit</div>
+	<div class="block_input">
+		<select name="pltype" >
+		  <option value="Profit">Profit</option>
+		  <option value="Loss">Loss</option>
+		</select>
+	</div>
+</div>
+<div class="row">
+<div class="block_text">More Info</div>
+<div class="block_input"> <input type="text" name="comment" /></div>
+</div>
+<span class="submit"><input type="submit" value="Submit"> </span>
+</div>
+</form>
+</div>
+<% include footer %>
+</body>
+</html>

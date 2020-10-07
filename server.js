@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 // Configuration
 app.use(cookieParser());
 app.use(session({
-	secret: 'ssshhhhh',
+	secret: 'veryimportantsecret',
 	resave: true,
     saveUninitialized: true,
     cookieName: 'session',
