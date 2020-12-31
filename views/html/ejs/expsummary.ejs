@@ -6,6 +6,9 @@
 <h2>Total: <%= data.total%></h2>
 <div class="content">
 <p>Expense Summary for <b><%= month%></b></p>
+<%monthArr.forEach(function(item) { %>
+<b><%= item%></b>
+ <% }); %>
 <div class="data">
 <div class="row">
 <div class="head_text">Purpose</div>

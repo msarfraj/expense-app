@@ -167,7 +167,7 @@ var routes = function(app) {
 		 summary.allexpenses(day ,function(data) {
 			 if(data.res){
 				 if(data.resp){
-							 res.render(path.resolve(viewdir+'/expsummary'),{month:month,data:data});
+							 res.render(path.resolve(viewdir+'/expsummary'),{month:month,data:data,monthArr:monthArr});
 				 }else{
 					res.render(path.resolve(viewdir+'/info'),{response:data.message});
 				 }
