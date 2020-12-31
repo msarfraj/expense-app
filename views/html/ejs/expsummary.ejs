@@ -5,10 +5,16 @@
 <% include navbar %>
 <h2>Total: <%= data.total%></h2>
 <div class="content">
-<p>Expense Summary for <b><%= month%></b></p>
-<%monthArr.forEach(function(item) { %>
-<b><%= item%></b>
- <% }); %>
+ <p><label for="months">Expense Summary for</label>
+  <select name="months" id="months">
+  <option value="volvo"><%= month%></option>
+  <%monthArr.forEach(function(item) { %>
+  <option value="'<%= item%>'"><%= item%></option>
+  <%= item%>
+   <% }); %>
+
+  </select>
+
 <div class="data">
 <div class="row">
 <div class="head_text">Purpose</div>
