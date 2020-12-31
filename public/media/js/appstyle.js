@@ -1,7 +1,10 @@
 $(function () {
     setNavigation();
 });
-
+$(document).on('change','.month_dropdown', function()
+{
+    console.log("test fine");
+});
 function setNavigation() {
     var path = window.location.pathname;
     path = path.replace(/\/$/, "");

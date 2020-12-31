@@ -3,42 +3,43 @@
 <% include header %>
 <body>
 <% include navbar %>
-<h2>Total: <%= data.total%></h2>
+<h2>Total: <%= data.total %></h2>
 <div class="content">
- <p><label for="months">Expense Summary for</label>
-  <select name="months" id="months">
-  <option value="volvo"><%= month%></option>
-  <%monthArr.forEach(function(item) { %>
-  <option value="'<%= item%>'"><%= item%></option>
-  <%= item%>
-   <% }); %>
+    <p><label for="months">Expense Summary for</label>
+        <select name="months" id="months" class="month_dropdown">
+            <option value="<%= month %>"><%= month %></option>
+            <% monthArr.forEach(function(item) { %>
+                <option value="<%= item %>"><%= item %></option>
+            <% }); %>
 
-  </select>
-
-<div class="data">
-<div class="row">
-<div class="head_text">Purpose</div>
-<div class="head_text">Amount</div>
-<div class="head_text">Date</div>
-<div class="head_text">Info</div>
-</div>
-<% data.data.forEach(function(item) { %>
-<div class="row">
-   <div class="data_text"><%= item.expense_title %></div>
-	<div class="data_text"><%= item.expense_amount %></div>
-	 <div id="dateText" class="data_text">
-		 <script>
-		  	var dat = new Date('<%= item.expense_date %>');
-		  	var day=dat.getDate();
-		  	var month=dat.getMonth()+1;
-			document.write(day,"/",month);
-		 </script>
-	 </div>
-   <div class="data_text"><%= item.comments %></div>
-	</div>
-    <% }); %>
- </div>
+        </select>
+    </p>
+    <div class="data">
+        <div class="row">
+            <div class="head_text">Purpose</div>
+            <div class="head_text">Amount</div>
+            <div class="head_text">Date</div>
+            <div class="head_text">Info</div>
+        </div>
+        <div id="content">
+        <% data.data.forEach(function(item) { %>
+            <div class="row">
+                <div class="data_text"><%= item.expense_title %></div>
+                <div class="data_text"><%= item.expense_amount %></div>
+                <div id="dateText" class="data_text">
+                    <script>
+                        var dat = new Date('<%= item.expense_date %>');
+                        var day = dat.getDate();
+                        var month = dat.getMonth() + 1;
+                        document.write(day, "/", month);
+                    </script>
+                </div>
+                <div class="data_text"><%= item.comments %></div>
+            </div>
+        <% }); %>
+        </div>
     </div>
-    <% include footer %>
+</div>
+<% include footer %>
 </body>
 </html>
