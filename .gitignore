@@ -18,3 +18,4 @@ local-server.js
 npm-debug.log
 .DS_Store
 /*.env
+.idea

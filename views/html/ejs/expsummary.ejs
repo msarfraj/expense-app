@@ -6,7 +6,7 @@
 <h2>Total: <%= data.total %></h2>
 <div class="content">
     <p><label for="months">Expense Summary for</label>
-        <select name="months" id="months" class="month_dropdown">
+        <select name="months" id="months" class="month_dropdown" onchange="changeMonth()">
             <option value="<%= month %>"><%= month %></option>
             <% monthArr.forEach(function(item) { %>
                 <option value="<%= item %>"><%= item %></option>
