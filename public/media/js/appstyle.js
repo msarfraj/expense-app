@@ -1,6 +1,5 @@
-$(function () {
+/*
     setNavigation();
-});
 
 function setNavigation() {
     var path = window.location.pathname;
@@ -13,7 +12,7 @@ function setNavigation() {
             $(this).closest('li').addClass('active');
         }
     });
-}
+}*/
 
 function myFunction() {
     var x = document.getElementById("myTopnav");

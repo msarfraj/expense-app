@@ -158,15 +158,44 @@ var routes = function(app) {
 		req.session.user=false;
 		res.render(path.resolve(viewdir+'/logout'));
 	});
+	app.get('/getMothData', function(req, res) {
+		var month1 = req.body.month;
+		var url=req.url+"?"+req.body.month;
+		res.redirect(url)
+		res.body={month:req.body.month};
+	});
+	app.post('/getMothData', function(req, res) {
+		var month = req.body.month;
+		summary.allexpenses(month ,function(data) {
+			if(data.res){
+				if(data.resp){
+					res.redirect
+					res.render(path.resolve(viewdir+'/expsummary'),{month:month,data:data,monthArr:monthArr});
+				}else{
+					res.render(path.resolve(viewdir+'/info'),{response:data.message});
+				}
+			}else{
+				res.render(path.resolve(viewdir+'/error'),{val:data});
+			}
+		});
+
+	});
 	app.get('/ehome', function(req, res) {
-		var d=new Date();
-		d.setDate(1);
-		var day=dateFormat(d, "yyyy-mm-dd");
-		var monthArr=["January","February","March","April","May","June","July","August","September","October","November","December"];
-		var month=monthArr[d.getMonth()];
-		 summary.allexpenses(day ,function(data) {
+		var month1 = req.body.month;
+		var month="";
+		if(month1){
+			month=month1;
+		}else{
+			var d=new Date();
+			d.setDate(1);
+			var monthArr=["January","February","March","April","May","June","July","August","September","October","November","December"];
+			var month=monthArr[d.getMonth()];
+		}
+		console.log("sending email"+month);
+		 summary.allexpenses(month ,function(data) {
 			 if(data.res){
 				 if(data.resp){
+					 res.redirect
 							 res.render(path.resolve(viewdir+'/expsummary'),{month:month,data:data,monthArr:monthArr});
 				 }else{
 					res.render(path.resolve(viewdir+'/info'),{response:data.message});

@@ -1,12 +1,8 @@
 var connection = require('.././model/db');
-var nodemailer = require('nodemailer');
-var dataInfo=require('../util/./emailtemplate');
-var dateFormat = require('dateformat');
-exports.allexpenses = function(dayOne, callback) {
-	var d=new Date();
-	var today=dateFormat(d, "yyyy-mm-dd");
-	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'")';
-	var getdata_expense_all = 'SELECT * FROM expenses where (expense_date between'+'"'+dayOne+'" and '+'"'+today+'") order by expense_date ASC';
+
+exports.allexpenses = function(month, callback) {
+	var getdata_expense_sum = 'SELECT sum(expense_amount) as totalexpenses FROM expenses where monthname(expense_date)='+'"'+month+'"';
+	var getdata_expense_all = 'SELECT * FROM expenses where monthname(expense_date)='+'"'+month+'" order by expense_date ASC';
 	var alreadySpent=0;
 	connection.query(getdata_expense_sum,function(err, result_expense) {
 						if (err) {

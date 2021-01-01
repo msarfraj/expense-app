@@ -1,5 +1,6 @@
 var mysql      = require('mysql');
 var dataInfo=require('../util/./constants');
+console.log(dataInfo.host);
 var connection = mysql.createConnection({
   host     : dataInfo.host,
   user     : dataInfo.user,

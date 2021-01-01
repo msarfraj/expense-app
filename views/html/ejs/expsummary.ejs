@@ -2,12 +2,13 @@
 <html lang="en">
 <% include header %>
 <body>
+<div id="content">
 <% include navbar %>
 <h2>Total: <%= data.total %></h2>
-<div class="content">
+<div class="content" >
     <p><label for="months">Expense Summary for</label>
-        <select name="months" id="months" class="month_dropdown" onchange="changeMonth()">
-            <option value="<%= month %>"><%= month %></option>
+        <select name="months" id="months" class="month_dropdown" onchange="changeMonth( this.options[this.selectedIndex].value)">
+            <option id="selected" value="<%= month %>"><%= month %></option>
             <% monthArr.forEach(function(item) { %>
                 <option value="<%= item %>"><%= item %></option>
             <% }); %>
@@ -21,7 +22,6 @@
             <div class="head_text">Date</div>
             <div class="head_text">Info</div>
         </div>
-        <div id="content">
         <% data.data.forEach(function(item) { %>
             <div class="row">
                 <div class="data_text"><%= item.expense_title %></div>
@@ -37,9 +37,9 @@
                 <div class="data_text"><%= item.comments %></div>
             </div>
         <% }); %>
-        </div>
     </div>
 </div>
 <% include footer %>
+</div>
 </body>
 </html>
