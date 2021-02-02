@@ -6,6 +6,8 @@ var path    = require('path');
 var app      = express();
 var port     = process.env.PORT || 5000;
 var cookieParser = require('cookie-parser');
+var bodyParser =require('body-parser');
+app.use(bodyParser.json())
 // Configuration
 app.use(cookieParser());
 app.use(session({

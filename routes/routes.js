@@ -15,8 +15,17 @@ var notify = require('../src/notify');
 var cron = require('node-schedule');
 var os = require("os");
 var dateFormat = require('dateformat');
+var monthArr=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var routes = function(app) {
 	var viewdir='views/html/ejs';
+	app.get('/dologin', function(req, res) {
+		if(req.session.user){
+			res.render(path.resolve(viewdir+'/loginSucess'));
+		}else{
+			res.render(path.resolve(viewdir+'/login'));
+		}
+	});
+
 	app.get('/', function(req, res) {
 		res.render(path.resolve(viewdir+'/home'));
 	});
@@ -34,19 +43,6 @@ var routes = function(app) {
 			res.render(path.resolve(viewdir+'/error'),{val:data});
 		});
 
-	});
-	app.get('/dologin', function(req, res) {
-		if(req.session.user){
-			res.render(path.resolve(viewdir+'/loginSucess'));
-		}else{
-			res.render(path.resolve(viewdir+'/login'));
-		}
-	});
-	app.get('/doadddebt', function(req, res) {
-		res.render(path.resolve(viewdir+'/adddebt'));
-	});
-	app.get('/dochangepass', function(req, res) {
-		res.render(path.resolve(viewdir+'/passchange'));
 	});
 	app.post('/login', function(req, res) {
 		var email = req.body.emailid;
@@ -66,6 +62,14 @@ var routes = function(app) {
 	app.get('/doregister', function(req, res) {
 		res.render(path.resolve(viewdir+'/register'));
 	});
+
+	app.get('/doadddebt', function(req, res) {
+		res.render(path.resolve(viewdir+'/adddebt'));
+	});
+	app.get('/dochangepass', function(req, res) {
+		res.render(path.resolve(viewdir+'/passchange'));
+	});
+
 	app.post('/adddebt', function(req, res) {
 		var amount = req.body.amount;
 		var name = req.body.name;
@@ -188,7 +192,6 @@ var routes = function(app) {
 		}else{
 			var d=new Date();
 			d.setDate(1);
-			var monthArr=["January","February","March","April","May","June","July","August","September","October","November","December"];
 			var month=monthArr[d.getMonth()];
 		}
 		console.log("sending email"+month);
