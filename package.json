@@ -1,19 +1,19 @@
 {
-  "name": "frnmz-app",
+  "name": "expense-app",
   "version": "1.0.0",
-  "description": "Project to create app for maintaining friday namaz member and expenses in Sapient Noida Office",
+  "description": "Project to create app for maintaining day to day expenses",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "testfrnmz"
+    "test": "testexpapp"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/msarfraj/frnmz-nodejs.git"
+    "url": "https://github.com/msarfraj/expense-app.git"
   },
   "keywords": [
-    "Friday",
-    "Namaz"
+    "expense",
+    "personal"
   ],
   "author": "Mohd Sarfraj",
   "dependencies": {
